@@ -28,8 +28,8 @@ namespace TravelAgency.Controllers
         {
             var bookingViewModel = new BookingViewModel
             {
-                Destination = _context.Destinations.ToList(),
-                Customer = _context.Customers.ToList()
+                Destinations = _context.Destinations.ToList(),
+                Customers = _context.Customers.ToList()
             };
 
             return View(bookingViewModel);

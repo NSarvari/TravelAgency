@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TravelAgency.Models.Destination>
+
+<h2>Destinations</h2>
+
+<p>
+    <a asp-action="Create" asp-controller="Destination" class="btn btn-success">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var destination in Model)
+        {
+            <tr>
+                <td>@destination.Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@destination.Id" class="btn btn-secondary">Details</a>
+                    <a asp-action="Update" asp-route-id="@destination.Id" class="btn btn-primary">Update</a>
+                    <form asp-action="Delete" asp-route-id="@destination.Id" method="post"
+                          onsubmit="return confirm('Are you sure you want to delete this destination?');">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
