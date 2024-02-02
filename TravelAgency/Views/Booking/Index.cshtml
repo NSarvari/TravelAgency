@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TravelAgency.Models.Booking>
+
+<h2>Bookings</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Destination</th>
+            <th>Customer</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.Id</td>
+                <td>@booking.Destination.Name</td>
+                <td>@booking.Customer.Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@booking.Id" class="btn btn-secondary">Details</a>
+                    <a asp-action="Update" asp-route-id="@booking.Id" class="btn btn-primary">Update</a>
+                    <form asp-action="Delete" asp-route-id="@booking.Id" method="post"
+                          onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
