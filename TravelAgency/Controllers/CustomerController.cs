@@ -43,14 +43,14 @@ namespace TravelAgency.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Update(int id)
         {
             var customer = _context.Customers.Find(id);
             return View(customer);
         }
 
         [HttpPost]
-        public IActionResult Edit(Customer customer)
+        public IActionResult Update(Customer customer)
         {
             _context.Customers.Update(customer);
             _context.SaveChanges();

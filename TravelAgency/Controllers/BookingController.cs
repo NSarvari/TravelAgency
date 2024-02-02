@@ -63,5 +63,33 @@ namespace TravelAgency.Controllers
             };
             return View(viewModel);
         }
+
+        [HttpPost]
+        public IActionResult Update(BookingViewModel bookingViewModel)
+        {
+            var booking = new Booking
+            {
+                Id = bookingViewModel.BookingId,
+                CustomerId = bookingViewModel.CustomerId,
+                DestinationId = bookingViewModel.DestinationId
+            };
+            _context.Entry(booking).State = EntityState.Modified;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var booking = _context.Bookings.Find(id);
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            _context.Bookings.Remove(booking);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
